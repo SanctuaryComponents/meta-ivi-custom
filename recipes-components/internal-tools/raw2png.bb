@@ -9,11 +9,10 @@ PV = "${SRCPV}"
 
 inherit cmake
 
-DEPENDS = " libpng eglibc openssl"
+DEPENDS = " libpng glibc openssl"
 
 S = "${WORKDIR}/git"
 
-PACKAGES = "${PN}"
 FILES_${PN} = "${bindir}/* " 
 
-
+FILES_${PN}-dbg += "${bindir}/.debug "

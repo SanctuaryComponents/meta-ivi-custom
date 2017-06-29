@@ -9,11 +9,9 @@ PV = "${SRCPV}"
 
 inherit cmake
 
-DEPENDS = " eglibc"
-
 S = "${WORKDIR}/git"
 
-PACKAGES = "${PN}"
+#PACKAGES = "${PN}"
 FILES_${PN} = "${bindir}/* " 
 
 
