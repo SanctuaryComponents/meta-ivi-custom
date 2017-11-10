@@ -1,9 +1,0 @@
-This is a refactoring of the https://github.com/guozhaohui/libqtlayerman project
---------------------------------------------------------------------------------
-
-Project have splitted in 2 part in order to facilitate build
-- libqtlayerman : which provide the library
-- libqtlayerman-demo : which provide a simple QML example linked against previous lib
-
-NB: this files is used also as License checksum ... 
-
