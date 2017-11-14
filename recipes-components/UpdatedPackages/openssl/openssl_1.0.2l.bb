@@ -1,17 +1,20 @@
-require openssl.inc
+require openssl10.inc
 
 # For target side versions of openssl enable support for OCF Linux driver
 # if they are available.
-DEPENDS += "cryptodev-linux"
 
 CFLAG += "-DHAVE_CRYPTODEV -DUSE_CRYPTODEV_DIGESTS"
+CFLAG_append_class-native = " -fPIC"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=27ffa5d74bb5a337056c14b2ef93fbf6"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=057d9218c6180e1d9ee407572b2dd225"
 
 export DIRS = "crypto ssl apps engines"
 export OE_LDFLAGS="${LDFLAGS}"
 
-SRC_URI += "file://configure-targets.patch \
+SRC_URI += "file://find.pl;subdir=openssl-${PV}/util/ \
+            file://run-ptest \
+            file://openssl-c_rehash.sh \
+            file://configure-targets.patch \
             file://shared-libs.patch \
             file://oe-ldflags.patch \
             file://engines-install-in-libdir-ssl.patch \
@@ -26,47 +29,25 @@ SRC_URI += "file://configure-targets.patch \
             file://debian/no-symbolic.patch \
             file://debian/pic.patch \
             file://debian1.0.2/version-script.patch \
+            file://debian1.0.2/soname.patch \
             file://openssl_fix_for_x32.patch \
-            file://fix-cipher-des-ede3-cfb1.patch \
-            file://find.pl \
             file://openssl-fix-des.pod-error.patch \
             file://Makefiles-ptest.patch \
             file://ptest-deps.patch \
-            file://run-ptest \
             file://openssl-1.0.2a-x32-asm.patch \
-            file://ptest_makefile_deps.patch  \
+            file://ptest_makefile_deps.patch \
+            file://configure-musl-target.patch \
             file://parallel.patch \
-            file://CVE-2016-2177.patch \
-            file://CVE-2016-2178.patch \
-            file://CVE-2016-2180.patch \
-            file://CVE-2016-2181_p1.patch \
-            file://CVE-2016-2181_p2.patch \
-            file://CVE-2016-2181_p3.patch \
-            file://CVE-2016-2182.patch \
-            file://CVE-2016-6302.patch \
-            file://CVE-2016-6303.patch \
-            file://CVE-2016-6304.patch \
-            file://CVE-2016-6306.patch \
-            file://CVE-2016-2179.patch \
-           "
+            file://openssl-util-perlpath.pl-cwd.patch \
+            file://Use-SHA256-not-MD5-as-default-digest.patch \
+            file://0001-Fix-build-with-clang-using-external-assembler.patch \
+            file://0001-openssl-force-soft-link-to-avoid-rare-race.patch  \
+            "
+SRC_URI[md5sum] = "f85123cd390e864dfbe517e7616e6566"
+SRC_URI[sha256sum] = "ce07195b659e75f4e1db43552860070061f156a98bb37b672b101ba6e3ddf30c"
 
-SRC_URI[md5sum] = "f3c710c045cdee5fd114feb69feba7aa"
-SRC_URI[sha256sum] = "b784b1b3907ce39abf4098702dade6365522a253ad1552e267a9a0e89594aa33"
-
-PACKAGES =+ " \
-	${PN}-engines \
-	${PN}-engines-dbg \
-	"
-
+PACKAGES =+ "${PN}-engines"
 FILES_${PN}-engines = "${libdir}/ssl/engines/*.so ${libdir}/engines"
-FILES_${PN}-engines-dbg = "${libdir}/ssl/engines/.debug"
-
-PARALLEL_MAKE = ""
-PARALLEL_MAKEINST = ""
-
-do_configure_prepend() {
-  cp ${WORKDIR}/find.pl ${S}/util/find.pl
-}
 
 # The crypto_use_bigint patch means that perl's bignum module needs to be
 # installed, but some distributions (for example Fedora 23) don't ship it by
