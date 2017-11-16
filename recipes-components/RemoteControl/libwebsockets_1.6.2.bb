@@ -3,8 +3,9 @@
 DESCRIPTION = "lightweight C websockets library"
 SECTION = "libs"
 LICENSE = "LGPL2.1"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=e3393a657830d4a118c5a6ed35ba53d0"
-SRC_URI = "git://github.com/warmcat/libwebsockets.git;tag=v2.1.0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=041a1dec49ec8a22e7f101350fd19550"
+SRC_URI = "git://github.com/warmcat/libwebsockets.git;branch=v1.6-stable;tag=v1.6.2"
+
 
 S = "${WORKDIR}/git"
 

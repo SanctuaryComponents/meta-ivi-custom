@@ -15,10 +15,13 @@ SRC_URI = "http://mosquitto.org/files/source/mosquitto-${PV}.tar.gz \
            file://mosquitto.service \
 "
 
-SRC_URI[md5sum] = "61839b47b58c5799aab76584f13ed66f"
-SRC_URI[sha256sum] = "437648d68a4a781dd8d913814cd5451f59ab4a5fcf84cccaf7c36e6a07459770"
+SRC_URI[md5sum] = "4cb978502312bff2dcdaab6a433b1bf2"
+SRC_URI[sha256sum] = "71a1cb37893403e00b7db85c5db4af50b40d055ce61e5d21092c2594f2023b8b"
 
-inherit autotools
+inherit cmake
+
+EXTRA_OECMAKE += " -DWITH_WEBSOCKETS:BOOL=ON "
+
 
 S = "${WORKDIR}/${PN}-${PV}"
 
