@@ -6,6 +6,8 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 
 inherit populate_sdk populate_sdk_qt5 
 
-RDEPENDS_${PN} += " layer-management "
 
-TOOLCHAIN_TARGET_TASK += " layer-management "
+
+RDEPENDS_${PN} += " layer-management imx-lib libimxvpuapi libjpeg-turbo "
+
+TOOLCHAIN_TARGET_TASK += " layer-management imx-lib libimxvpuapi libjpeg-turbo "
