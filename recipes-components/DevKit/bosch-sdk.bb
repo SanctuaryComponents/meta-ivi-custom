@@ -8,6 +8,6 @@ inherit populate_sdk populate_sdk_qt5
 
 
 
-RDEPENDS_${PN} += " layer-management imx-lib libimxvpuapi libjpeg-turbo "
+RDEPENDS_${PN} += " layer-management imx-lib libjpeg-turbo "
 
-TOOLCHAIN_TARGET_TASK += " layer-management imx-lib libimxvpuapi libjpeg-turbo "
+TOOLCHAIN_TARGET_TASK += " layer-management imx-lib libjpeg-turbo "
