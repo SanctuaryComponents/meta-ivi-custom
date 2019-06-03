@@ -11,7 +11,7 @@ SRCREV = "5e2f490b40b8b60a0efbd2b244be44d93bc081f6"
 PR = "r1"
 
 SRC_URI = " \
-    git://github.com/SancturaryComponents/layer_management.git; \
+    git://github.com/SanctuaryComponents/layer_management.git; \
     file://layermanager.service \
     "
 
